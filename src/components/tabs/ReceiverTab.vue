@@ -521,6 +521,7 @@ import WikiButton from "@/components/elements/WikiButton.vue";
 import { i18n } from "@/js/localization";
 import MSP from "@/js/msp";
 import MSPCodes from "@/js/msp/MSPCodes";
+import { logTabLoadError } from "@/js/utils/tabLoad";
 import { mspHelper } from "@/js/msp/MSPHelper";
 import GUI from "@/js/gui";
 import Model from "@/js/model";
@@ -1051,7 +1052,7 @@ async function loadConfig() {
         needReboot.value = false;
         savedSnapshot.value = takeSnapshot();
     } catch (e) {
-        console.error("Failed to load Receiver configuration", e);
+        logTabLoadError("Receiver configuration", e);
     }
 }
 

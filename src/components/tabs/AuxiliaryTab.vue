@@ -165,6 +165,7 @@ import { useSaving } from "../../composables/useSaving";
 import { useReboot } from "../../composables/useReboot";
 import MSP from "../../js/msp";
 import MSPCodes from "../../js/msp/MSPCodes";
+import { logTabLoadError } from "../../js/utils/tabLoad";
 import { mspHelper } from "../../js/msp/MSPHelper";
 import { bit_check, bit_set } from "../../js/bit";
 import { get as getConfig, set as setConfig } from "../../js/ConfigStorage";
@@ -654,7 +655,7 @@ export default defineComponent({
                 buildModesFromFC();
                 updateMarkers();
             } catch (error) {
-                console.error("Failed to load auxiliary data", error);
+                logTabLoadError("auxiliary data", error);
             } finally {
                 await nextTick();
                 GUI.content_ready();

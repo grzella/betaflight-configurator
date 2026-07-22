@@ -530,6 +530,7 @@ import { useOsdPreview, clampStringPreviewPosition, clampArrayPreviewPosition } 
 import { useOsdRuler } from "@/composables/useOsdRuler";
 import { useTransientLabel } from "@/composables/useTransientLabel";
 import { useSaving } from "@/composables/useSaving";
+import { logTabLoadError } from "@/js/utils/tabLoad";
 import BaseTab from "./BaseTab.vue";
 import WikiButton from "@/components/elements/WikiButton.vue";
 import UiBox from "@/components/elements/UiBox.vue";
@@ -1303,7 +1304,7 @@ async function loadConfig() {
         updatePreview();
         hasLoadedConfig.value = true;
     } catch (error) {
-        console.error("Failed to load OSD configuration:", error);
+        logTabLoadError("OSD configuration", error);
     }
 }
 

@@ -340,6 +340,7 @@ import LedGrid from "./led_strip/LedGrid.vue";
 import HelpIcon from "../elements/HelpIcon.vue";
 import { useLedStrip } from "@/composables/useLedStrip";
 import { useSaving } from "@/composables/useSaving";
+import { logTabLoadError } from "@/js/utils/tabLoad";
 import { useTransientLabel } from "@/composables/useTransientLabel";
 import { i18n } from "@/js/localization";
 import { gui_log } from "@/js/gui_log";
@@ -555,7 +556,7 @@ const onTabMounted = async () => {
         loadConfigValues();
         GUI.content_ready();
     } catch (error) {
-        console.error("Failed to load LED strip data:", error);
+        logTabLoadError("LED strip data", error);
     }
 };
 

@@ -129,6 +129,7 @@ import SubtabNav from "@/components/elements/SubtabNav.vue";
 import GUI from "@/js/gui";
 import MSP from "@/js/msp";
 import MSPCodes from "@/js/msp/MSPCodes";
+import { logTabLoadError } from "@/js/utils/tabLoad";
 import FC from "@/js/fc";
 import { i18n } from "@/js/localization";
 import { validateTuningSliders } from "@/composables/useTuningSliders";
@@ -294,7 +295,7 @@ async function loadData() {
         GUI.content_ready();
         return true;
     } catch (e) {
-        console.error("[PidTuning] Failed to load data:", e);
+        logTabLoadError("PidTuning data", e);
         GUI.content_ready();
         return false;
     } finally {

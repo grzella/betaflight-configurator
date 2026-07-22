@@ -263,6 +263,7 @@ import BaseTab from "./BaseTab.vue";
 import GUI from "../../js/gui";
 import MSP from "../../js/msp";
 import MSPCodes from "../../js/msp/MSPCodes";
+import { logTabLoadError } from "../../js/utils/tabLoad";
 import { mspHelper } from "../../js/msp/MSPHelper";
 import { updateTabList } from "../../js/utils/updateTabList";
 import { initMap } from "../../js/utils/map";
@@ -742,7 +743,7 @@ export default defineComponent({
 
                 addInterval("gps_pull", getRawGpsData, 100, true);
             } catch (error) {
-                console.error("Failed to load GPS configuration", error);
+                logTabLoadError("GPS configuration", error);
                 isOnline.value = ispConnected();
                 isWaiting.value = false;
             } finally {

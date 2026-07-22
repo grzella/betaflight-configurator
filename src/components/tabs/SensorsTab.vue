@@ -820,6 +820,8 @@ import { useIsMounted } from "@/composables/useIsMounted";
 import { useSaving } from "@/composables/useSaving";
 import MSP from "../../js/msp";
 import MSPCodes from "../../js/msp/MSPCodes";
+import { logTabLoadError } from "../../js/utils/tabLoad";
+import { isMspCancelled } from "../../js/msp/mspErrors";
 import { mspHelper } from "../../js/msp/MSPHelper.js";
 import { gui_log } from "../../js/gui_log";
 import { i18n } from "../../js/localization";
@@ -2400,7 +2402,9 @@ const loadConfig = async () => {
             sensorTypesData.value = await sensorTypes();
         } catch (error) {
             sensorTypesData.value = null;
-            console.warn("Failed to load sensor types", error);
+            if (!isMspCancelled(error)) {
+                console.warn("Failed to load sensor types", error);
+            }
         }
 
         hydrateSensorConfig();
@@ -2424,7 +2428,7 @@ const loadConfig = async () => {
 
         GUI.content_ready();
     } catch (e) {
-        console.error("Failed to load sensor config", e);
+        logTabLoadError("sensor config", e);
         GUI.content_ready();
     }
 };

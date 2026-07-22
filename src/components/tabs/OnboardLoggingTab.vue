@@ -300,6 +300,7 @@ import HelpIcon from "../elements/HelpIcon.vue";
 import GUI from "../../js/gui";
 import MSP from "../../js/msp";
 import MSPCodes from "../../js/msp/MSPCodes";
+import { logTabLoadError } from "../../js/utils/tabLoad";
 import { mspHelper } from "../../js/msp/MSPHelper";
 import { API_VERSION_1_45, API_VERSION_1_47 } from "../../js/data_storage";
 import { i18n } from "../../js/localization";
@@ -972,7 +973,7 @@ export default defineComponent({
                 onboardLoggingBaseline.value = serializeOnboardLoggingState();
                 updateHtml();
             } catch (error) {
-                console.error("Failed to load onboard logging data", error);
+                logTabLoadError("onboard logging data", error);
             } finally {
                 GUI.content_ready();
             }

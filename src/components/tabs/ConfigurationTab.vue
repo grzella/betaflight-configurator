@@ -204,6 +204,7 @@ import { useSaving } from "@/composables/useSaving";
 import GUI from "../../js/gui";
 import MSP from "../../js/msp";
 import MSPCodes from "../../js/msp/MSPCodes";
+import { logTabLoadError } from "../../js/utils/tabLoad";
 import { mspHelper } from "../../js/msp/MSPHelper.js";
 import { gui_log } from "../../js/gui_log";
 import { i18n } from "../../js/localization";
@@ -395,7 +396,7 @@ export default defineComponent({
                 await nextTick();
                 GUI.content_ready();
             } catch (e) {
-                console.error("Failed to load configuration", e);
+                logTabLoadError("configuration", e);
                 GUI.content_ready();
             }
         };

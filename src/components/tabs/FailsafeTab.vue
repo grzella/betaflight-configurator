@@ -400,6 +400,7 @@ import WikiButton from "@/components/elements/WikiButton.vue";
 import { i18n } from "@/js/localization";
 import MSP from "@/js/msp";
 import MSPCodes from "@/js/msp/MSPCodes";
+import { logTabLoadError } from "@/js/utils/tabLoad";
 import { mspHelper } from "@/js/msp/MSPHelper";
 import adjustBoxNameIfPeripheralWithModeID from "@/js/peripherals";
 import semver from "semver";
@@ -439,7 +440,7 @@ const loadConfig = async () => {
         await MSP.promise(MSPCodes.MSP_RSSI_CONFIG);
         await MSP.promise(MSPCodes.MSP_MODE_RANGES);
     } catch (e) {
-        console.error("Failed to load Failsafe configuration", e);
+        logTabLoadError("Failsafe configuration", e);
     }
 };
 
